@@ -1,109 +1,117 @@
 package org.acme.getting.started;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name = "pessoa")
 public class Pessoa implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(length = 32, nullable = false)
-    private String nome;
+	@Column(length = 32, nullable = false)
+	private String nome;
 
-    @Column(length = 32, nullable = false)
-    private String email;
+	@Column(length = 32, nullable = false)
+	private String email;
 
-    @Column(length = 16, nullable = false)
-    private String telefone;
+	@Column(length = 16, nullable = false)
+	private String telefone;
 
-    @Column(length = 128)
-    private String endereco;
+	@Column(length = 128)
+	private String endereco;
 
-    @Column(length = 16, nullable = false)
-    private String senha;
+	@Column(length = 16, nullable = false)
+	private String senha;
 
-    public Long getId() {
-        return id;
-    }
+	@OneToMany(mappedBy = "autor")
+	private List<ItemDoacao> itemDoacao;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public String getEndereco() {
-        return endereco;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+	public String getEndereco() {
+		return endereco;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Pessoa pessoa = (Pessoa) o;
-        return Objects.equals(id, pessoa.id);
-    }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
+	public List<ItemDoacao> getItemDoacao() {
+		return itemDoacao;
+	}
 
-    @Override
-    public String toString() {
-        return "Pessoa{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", endereco='" + endereco + '\'' +
-                ", senha='" + senha + '\'' +
-                '}';
-    }
+	public void setItemDoacao(List<ItemDoacao> itemDoacao) {
+		this.itemDoacao = itemDoacao;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Pessoa pessoa = (Pessoa) o;
+		return Objects.equals(id, pessoa.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(id);
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa{" + "id=" + id + ", nome='" + nome + '\'' + ", email='" + email + '\'' + ", telefone='"
+				+ telefone + '\'' + ", endereco='" + endereco + '\'' + ", senha='" + senha + '\'' + '}';
+	}
 }
